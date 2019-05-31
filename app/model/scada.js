@@ -7,6 +7,7 @@ module.exports = app => {
         scada_id: {type: Schema.Types.ObjectId},
         app_id: {type: String},
         scada_name: {type: String},
+        scada_describe: {type: String},
         camera_alpha: {type: Number},
         camera_beta: {type: Number},
         camera_radius: {type: Number},

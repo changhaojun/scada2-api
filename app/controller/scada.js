@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const filename = 'scada';
 
-class SceneController extends Controller {
+class ScadaController extends Controller {
     async index() {
         const {ctx} = this;
         const opt = ctx.query;  
@@ -40,4 +40,4 @@ class SceneController extends Controller {
         ctx.body = result;
     }
 }
-module.exports = SceneController;
+module.exports = ScadaController;

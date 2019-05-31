@@ -9,8 +9,16 @@ class ScadaService extends Service {
         const {Scada} = this.ctx.model;
         const pageSize = Number(opt.page_size);
         const pageNumber = Number(opt.page_number) - 1;
+        const count = await Scada.count({app_id: opt.app_id});
         const result = await Scada.find({app_id: opt.app_id}).limit(pageSize).skip(pageSize*pageNumber).select('scada_name scada_id');
-        return this.app.standardRes(200, 'success: get_scene', result);
+        return {
+            code: 200,
+            message: 'success: get_scada',
+            result: {
+                total: count,
+                rows: result
+            }
+        }
     }
 
     async ScadaData(scadaId) {
@@ -21,18 +29,23 @@ class ScadaService extends Service {
 
     async create(body) {
         const {Scada} = this.ctx.model;
-        body.scada_id = mongoose.Types.ObjectId();
-        body.scada_name = "";
-        body.create_time = moment().add(8, 'hours').format('YYYY-MM-DD HH:mm:ss');
-        body.update_time = "";
-        body.visible = 1;
-        await Scada.create(body);
-        return this.app.standardRes(200, 'success: create_scada', {scada_id: body.scada_id});
+        const res = Object.assign(body, {
+            scada_name: "",
+            buildings: [],
+            models: [],
+            camera_target: [0, 0, 0],
+            available: 1,
+            scada_id: mongoose.Types.ObjectId(),
+            create_time: moment()
+        })
+        await Scada.create(res);
+        return this.app.standardRes(200, 'success: create_scada', {scada_id: res.scada_id});
     }
 
     async update(scadaId, body) {
         const {Scada} = this.ctx.model;
-        body.update_time = moment().add(8, 'hours').format('YYYY-MM-DD HH:mm:ss');
+        body.update_time = moment();
+        console.log(body)
         await Scada.update({scada_id: scadaId}, body);
         return this.app.standardRes(200, 'success: update_scada');
     }
@@ -40,14 +53,15 @@ class ScadaService extends Service {
     async remove(scadaId) {
         const {Scada} = this.ctx.model;
         await Scada.remove({scada_id: scadaId});
-        return this.app.standardRes(200, 'success: delete_scene');
+        return this.app.standardRes(200, 'success: delete_scada');
     }
 }
 module.exports = ScadaService;
 
 const datas = {
     "app_id": "5ce503534a560c0c186e2b05",
-    "scene_name": "组态",
+    "scada_name": "组态",
+    "scada_describe": "",
 	"camera_alpha": 10,
 	"camera_beta": 5,
 	"camera_radius": 8,
