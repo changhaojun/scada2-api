@@ -13,5 +13,5 @@ RUN npm install --production
 RUN npm i egg-scripts --save
 
 EXPOSE 7001
- 
+
 CMD ["npm","start"]
