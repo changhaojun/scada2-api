@@ -20,27 +20,27 @@
 2.  参数：username、password
 3.  描述：登录接口
 
-##### 2.  app/scada
+##### 2.  app/template
 1.  method: GET
 2.  参数：app_id、page_size、page_number (没有分页时page_size,page_number不传)
 2.  描述：用于获取当前应用下的组态列表
 
-##### 3.  app/scada/:scadaId
+##### 3.  app/template/:scadaId
 1.  method: GET
 2.  参数：
 2.  描述：获取组态数据
 
-##### 4.  app/scada
+##### 4.  app/template
 1.  method: POST
 2.  参数：app_id
 3.  描述：新增组态
 
-##### 5.  app/scada/:scadaId
+##### 5.  app/template/:scadaId
 1.  method: PUT
 2.  参数：data.js文件结构
 3.  描述：更新组态信息
 
-##### 6.  app/scada/:scadaId
+##### 6.  app/template/:scadaId
 1.  method: DELETE
 2.  参数：
 3.  描述：删除组态
