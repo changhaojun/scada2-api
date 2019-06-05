@@ -4,16 +4,16 @@ const Service = require('egg').Service;
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-class ScadaService extends Service {
+class TemplateService extends Service {
     async index(opt) {
-        const {Scada} = this.ctx.model;
+        const {Template} = this.ctx.model;
         const pageSize = Number(opt.page_size);
         const pageNumber = Number(opt.page_number) - 1;
-        const count = await Scada.count({app_id: opt.app_id});
-        const result = await Scada.find({app_id: opt.app_id}).limit(pageSize).skip(pageSize*pageNumber).select('scada_name scada_id');
+        const count = await Template.count({app_id: opt.app_id});
+        const result = await Template.find({app_id: opt.app_id}).limit(pageSize).skip(pageSize*pageNumber).select('scada_name scada_id');
         return {
             code: 200,
-            message: 'success: get_scada',
+            message: 'success: get_template',
             result: {
                 total: count,
                 rows: result
@@ -21,14 +21,14 @@ class ScadaService extends Service {
         }
     }
 
-    async ScadaData(scadaId) {
-        const {Scada} = this.ctx.model;
-        let result = await Scada.findOne({scada_id: scadaId});
-        return this.app.standardRes(200, 'success: get_scada', result);
+    async templateData(scadaId) {
+        const {Template} = this.ctx.model;
+        let result = await Template.findOne({scada_id: scadaId});
+        return this.app.standardRes(200, 'success: get_template', result);
     }
 
     async create(body) {
-        const {Scada} = this.ctx.model;
+        const {Template} = this.ctx.model;
         const res = Object.assign(body, {
             scada_name: "",
             buildings: [],
@@ -38,25 +38,25 @@ class ScadaService extends Service {
             scada_id: mongoose.Types.ObjectId(),
             create_time: moment()
         })
-        await Scada.create(res);
-        return this.app.standardRes(200, 'success: create_scada', {scada_id: res.scada_id});
+        await Template.create(res);
+        return this.app.standardRes(200, 'success: create_template', {scada_id: res.scada_id});
     }
 
     async update(scadaId, body) {
-        const {Scada} = this.ctx.model;
+        const {Template} = this.ctx.model;
         body.update_time = moment();
         console.log(body)
-        await Scada.update({scada_id: scadaId}, body);
-        return this.app.standardRes(200, 'success: update_scada');
+        await Template.update({scada_id: scadaId}, body);
+        return this.app.standardRes(200, 'success: update_template');
     }
 
     async remove(scadaId) {
-        const {Scada} = this.ctx.model;
-        await Scada.remove({scada_id: scadaId});
-        return this.app.standardRes(200, 'success: delete_scada');
+        const {Template} = this.ctx.model;
+        await Template.remove({scada_id: scadaId});
+        return this.app.standardRes(200, 'success: delete_template');
     }
 }
-module.exports = ScadaService;
+module.exports = TemplateService;
 
 const datas = {
     "app_id": "5ce503534a560c0c186e2b05",

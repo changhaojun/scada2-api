@@ -3,7 +3,7 @@
 module.exports = app => {
     const {mongoose} = app;
     const {Schema} = mongoose;
-    const ScadaSchema = new Schema({
+    const TemplateSchema = new Schema({
         scada_id: {type: Schema.Types.ObjectId},
         app_id: {type: String},
         scada_name: {type: String},
@@ -18,5 +18,5 @@ module.exports = app => {
         update_time: {type: Date},
         visible: {type: Number}
     });
-    return mongoose.model('Scada', ScadaSchema, 'scada_c');
+    return mongoose.model('Template', TemplateSchema, 'sc_template_c');
 }

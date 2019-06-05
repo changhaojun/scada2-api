@@ -1,9 +1,9 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const filename = 'scada';
+const filename = 'template';
 
-class ScadaController extends Controller {
+class TemplateController extends Controller {
     async index() {
         const {ctx} = this;
         const opt = ctx.query;  
@@ -11,10 +11,10 @@ class ScadaController extends Controller {
         ctx.body = result;
     }
 
-    async scadaData() {
+    async templateData() {
         const {ctx} = this;
         const {scadaId} = ctx.params; 
-        const result = await ctx.service[filename].ScadaData(scadaId);
+        const result = await ctx.service[filename].templateData(scadaId);
         ctx.body = result;
     }
 
@@ -40,4 +40,4 @@ class ScadaController extends Controller {
         ctx.body = result;
     }
 }
-module.exports = ScadaController;
+module.exports = TemplateController;
