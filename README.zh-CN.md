@@ -13,7 +13,7 @@
 
 ### 主要功能:
 
-####  提供给finfosoft-scada2-web接口列表  
+#### 提供给finfosoft-scada2-web接口列表  
 
 ##### 1.  app/login
 1.  method: POST
@@ -23,27 +23,40 @@
 ##### 2.  app/template
 1.  method: GET
 2.  参数：app_id、page_size、page_number (没有分页时page_size,page_number不传)
-2.  描述：用于获取当前应用下的组态列表
+2.  描述：用于获取当前应用下的组态模板列表
 
 ##### 3.  app/template/:scadaId
 1.  method: GET
 2.  参数：
-2.  描述：获取组态数据
+2.  描述：获取组态模板数据
 
 ##### 4.  app/template
 1.  method: POST
 2.  参数：app_id
-3.  描述：新增组态
+3.  描述：新增组态模板
 
 ##### 5.  app/template/:scadaId
 1.  method: PUT
 2.  参数：data.js文件结构
-3.  描述：更新组态信息
+3.  描述：更新组态模板信息
 
 ##### 6.  app/template/:scadaId
 1.  method: DELETE
 2.  参数：
-3.  描述：删除组态
+3.  描述：删除组态模板
 
+##### 7.  app/scada/:scadaId
+1.  method: GET
+2.  参数：
+2.  描述：获取组态信息
 
+##### 8.  app/scada
+1.  method: POST
+2.  参数：data.js文件结构
+2.  描述：新增组态
+
+##### 8.  app/scada/:scadaId
+1.  method: PUT
+2.  参数：data.js文件结构
+2.  描述：编辑组态
 
