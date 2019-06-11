@@ -6,7 +6,7 @@ const filename = 'scada';
 class ScadaController extends Controller {
     async index() {
         const {ctx} = this;
-        const {scadaId} = ctx.params; 
+        const {scadaId} = ctx.params;
         const result = await ctx.service[filename].index(scadaId);
         ctx.body = result;
     }

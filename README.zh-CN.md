@@ -55,7 +55,7 @@
 2.  参数：data.js文件结构
 2.  描述：新增组态
 
-##### 8.  app/scada/:scadaId
+##### 9.  app/scada/:scadaId
 1.  method: PUT
 2.  参数：data.js文件结构
 2.  描述：编辑组态

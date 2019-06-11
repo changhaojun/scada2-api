@@ -1,5 +1,6 @@
 const datas = {
     "app_id": "5ce503534a560c0c186e2b05",
+    "template_id": "",
     "scada_name": "组态",
     "scada_describe": "",
 	"camera_alpha": -7.890138408238826,
