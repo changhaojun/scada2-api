@@ -48,15 +48,19 @@
 ##### 7.  app/scada/:scadaId
 1.  method: GET
 2.  参数：
-2.  描述：获取组态信息
+3.  描述：获取组态信息
 
 ##### 8.  app/scada
 1.  method: POST
 2.  参数：data.js文件结构
-2.  描述：新增组态
+3.  描述：新增组态
 
 ##### 9.  app/scada/:scadaId
 1.  method: PUT
 2.  参数：data.js文件结构
-2.  描述：编辑组态
+3.  描述：编辑组态
 
+##### 10.   app/model
+1.  method: GET
+2.  参数： 
+3.  描述：获取模型

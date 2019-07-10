@@ -7,7 +7,7 @@ const moment = require('moment');
 class ScadaService extends Service {
     async index(scadaId) {
         const {Scada} = this.ctx.model; 
-        const result = await Scada.findOne({scada_id: scadaId})
+        const result = await Scada.findOne({scada_id: scadaId});
         return this.app.standardRes(200, 'success: get_scada', result);
     }
 
