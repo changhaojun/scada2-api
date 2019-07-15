@@ -23,12 +23,12 @@
 ##### 2.  app/template
 1.  method: GET
 2.  参数：app_id、page_size、page_number (没有分页时page_size,page_number不传)
-2.  描述：用于获取当前应用下的组态模板列表
+3.  描述：用于获取当前应用下的组态模板列表
 
 ##### 3.  app/template/:scadaId
 1.  method: GET
 2.  参数：
-2.  描述：获取组态模板数据
+3.  描述：获取组态模板数据
 
 ##### 4.  app/template
 1.  method: POST
