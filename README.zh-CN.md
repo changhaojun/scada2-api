@@ -64,3 +64,8 @@
 1.  method: GET
 2.  参数： 
 3.  描述：获取模型列表
+
+##### 11.   app/model
+1.  method: PUT
+2.  参数：model_system
+3.  描述：全局修改model_system
