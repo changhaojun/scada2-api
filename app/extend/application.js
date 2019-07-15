@@ -1,5 +1,7 @@
 'use strict';
 
+const moment = require('moment');
+
 const extend = {
     versioning(path) {
         if(path[0] !== '/') {
@@ -17,6 +19,17 @@ const extend = {
             };
         }
         return { code, message, result };
+    },
+    addDefaultTime(origin) {
+        return Object.assign(origin, {
+            create_time:  moment(),
+            update_time: moment()
+        })
+    },
+    addUpdateTime(origin) {
+        return Object.assign(origin, {
+            update_time: moment()
+        })
     }
 }
 module.exports = extend;
