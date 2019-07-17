@@ -20,12 +20,6 @@ const extend = {
         }
         return { code, message, result };
     },
-    addDefaultTime(origin) {
-        return Object.assign(origin, {
-            create_time:  moment(),
-            update_time: moment()
-        })
-    },
     addUpdateTime(origin) {
         return Object.assign(origin, {
             update_time: moment()
