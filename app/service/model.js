@@ -5,8 +5,13 @@ const Service = require('egg').Service;
 class ModelService extends Service {
     async index() {
         const {ctx, app} = this;
-        const {Model} = ctx.model; 
-        const result = await Model.find();
+        const {Group, Model} = ctx.model; 
+        let result = await Group.find();
+        result = JSON.parse(JSON.stringify(result))
+        for(let group of result) {
+            const models = await Model.find({group_id: group.group_id});
+            group.models = models;
+        }
         return app.standardRes(
             200, 
             'success: get_model', 

@@ -6,7 +6,7 @@ module.exports = app => {
     const ModelSchema = new Schema({
         name_en: {type: String},
         name_cn: {type: String},
-        model_system: {type: Number}
+        group_id: {type: Number}
     });
     return mongoose.model('Model', ModelSchema, 'model_c');
 }
