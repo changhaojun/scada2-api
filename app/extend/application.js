@@ -15,7 +15,7 @@ const extend = {
             const total = result.length;
             result = {
                 total,
-                rows: result,
+                rows: result
             };
         }
         return { code, message, result };

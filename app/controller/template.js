@@ -21,8 +21,13 @@ class TemplateController extends Controller {
     async create() {
         const {ctx} = this;
         const {body} = ctx.request;
-        const result = await ctx.service[filename].create(body);
-        ctx.body = result;
+        try{
+            if(!JSON.stringify(body).includes('app_id')) throw new Error('The request parameter is not "app_id"');
+            const result = await ctx.service[filename].create(body);
+            ctx.body = result;
+        }catch(err) {
+            
+        }
     }
     
     async update() {
@@ -38,6 +43,18 @@ class TemplateController extends Controller {
         const {scadaId} = ctx.params; 
         const result = await ctx.service[filename].remove(scadaId);
         ctx.body = result;
+    }
+
+    async copyTemplate() {
+        const {ctx} = this;
+        const {body} = ctx.request;
+        try{
+            if(!JSON.stringify(body).includes('app_id') || !body['scada_id']) throw new Error('The request parameter are not "app_id" and "scada_id"');   
+            const result = await ctx.service[filename].copyTemplate(body);
+            ctx.body = result;
+        }catch(err) {
+            
+        }
     }
 }
 module.exports = TemplateController;

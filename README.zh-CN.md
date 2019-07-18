@@ -45,6 +45,12 @@
 2.  参数：
 3.  描述：删除组态模板
 
+##### 7.  app/template/copy
+1.  method: POST
+2.  参数：app_id、scada_id   
+3.  描述：复制组态模板
+
+
 ##### 7.  app/scada/:scadaId
 1.  method: GET
 2.  参数：

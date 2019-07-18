@@ -12,7 +12,7 @@ class TemplateService extends Service {
         const pageSize = Number(page_size);
         const pageNumber = Number(page_number) - 1;
         const count = await Template.count({app_id: appId});
-        const result = await Template.find({app_id: appId, available: 1}).limit(pageSize).skip(pageSize*pageNumber).select('scada_name scada_id create_time'); 
+        const result = await Template.find({app_id: appId, available: 1}).limit(pageSize).skip(pageSize*pageNumber).select('scada_name scada_id'); 
         return {
             code: 200,
             message: 'success: get_template',
@@ -44,9 +44,9 @@ class TemplateService extends Service {
             buildings: [],
             models: [],
             camera_target: [0, 0, 0],
-            camera_alpha: 0,
-            camera_beta: 0,
-            camera_radius: 0,
+            camera_alpha: -1.57,
+            camera_beta: 1.05,
+            camera_radius: 80,
             available: 1,
             create_time: moment(),
             update_time: moment()
@@ -65,20 +65,49 @@ class TemplateService extends Service {
         const {ctx, app} = this;
         const {Template} = ctx.model;
         const data = app.addUpdateTime(body);
-        await Template.update({scada_id: scadaId}, data);
-        return app.standardRes(
-            200, 
-            'success: update_template'
-        );
+        const result = await Template.update({scada_id: scadaId}, data);
+        if(result.nModified) {
+            return app.standardRes(
+                200, 
+                'success: update_template'
+            );
+        }else {
+            return app.standardRes(201,'error: update_template');
+        } 
     }
 
     async remove(scadaId) {
         const {ctx, app} = this;
         const {Template} = ctx.model;
-        await Template.remove({scada_id: scadaId});
+        const result = await Template.remove({scada_id: scadaId});
+        if(result.deletedCount) {
+            return app.standardRes(
+                200, 
+                'success: delete_template'
+            );
+        }else {
+            return app.standardRes(201, 'error: delete_template');
+        }
+    }
+
+    async copyTemplate(body) {
+        const {ctx, app} = this;
+        const {Template} = ctx.model;
+
+        const res = await Template.findOne(body, {_id: 0});
+        const data = Object.assign(res, {
+            scada_id: mongoose.Types.ObjectId(),
+            scada_name: '',
+            create_time: moment(),
+            update_time: moment()
+        })
+        const result = await Template.create(JSON.parse(JSON.stringify(data)));
         return app.standardRes(
             200, 
-            'success: delete_template'
+            'success: copy_template',
+            {
+                scada_id: result.scada_id
+            }
         );
     }
 }
