@@ -56,5 +56,12 @@ class TemplateController extends Controller {
             
         }
     }
+
+    async templateUsed() {
+        const {ctx} = this;
+        const {id} = ctx.params;
+        const result = await ctx.service[filename].templateUsed(id);
+        ctx.body = result;
+    }
 }
 module.exports = TemplateController;

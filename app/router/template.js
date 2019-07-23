@@ -10,5 +10,6 @@ const router = app => {
     router.put(baseurl + '/:scadaId', controller[filename].update);
     router.delete(baseurl + '/:scadaId', controller[filename].remove);
     router.post(baseurl + '/copy', controller[filename].copyTemplate);
+    router.get(baseurl + '/used/:id', controller[filename].templateUsed)
 }
 module.exports = router;

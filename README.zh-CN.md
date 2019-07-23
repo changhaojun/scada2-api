@@ -50,28 +50,34 @@
 2.  参数：app_id、scada_id   
 3.  描述：复制组态模板
 
+##### 8.  app/template/used/:id
+1.  method: GET
+2.  参数：id为app_id 或scada_id
+3.  描述：获取已使用的组态模板
 
-##### 7.  app/scada/:scadaId
+
+##### 9.  app/scada/:scadaId
 1.  method: GET
 2.  参数：
 3.  描述：获取组态信息
 
-##### 8.  app/scada
+##### 10.  app/scada
 1.  method: POST
 2.  参数：data.js文件结构
 3.  描述：新增组态
 
-##### 9.  app/scada/:scadaId
+##### 11.  app/scada/:scadaId
 1.  method: PUT
 2.  参数：data.js文件结构
 3.  描述：编辑组态
 
-##### 10.   app/model
+##### 12.   app/model
 1.  method: GET
 2.  参数： 
 3.  描述：获取模型列表
 
-##### 11.   app/model
+##### 13.   app/model
 1.  method: PUT
 2.  参数：model_system
 3.  描述：全局修改model_system
+
