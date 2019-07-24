@@ -122,7 +122,7 @@ class TemplateService extends Service {
             })
         })
         usedModels = usedModels.map(function(model) {
-            return model.replace(/\-\d{1,}$/, '');
+            return model.replace(/\-\d{1,}$/, '').replace(/^add\_\_/, '');
         })
         const result = [...new Set(usedModels)];
         return app.standardRes(
