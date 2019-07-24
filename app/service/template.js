@@ -114,7 +114,7 @@ class TemplateService extends Service {
     async templateUsed(id) {
         const {ctx, app} = this;
         const {Template} = ctx.model;
-        const datas = await Template.find({"$or": [{app_id: id}, {scada_id: id}]}); // 查找app_id: id 或scada_id: id 的数据
+        const datas = await Template.find({"$or": [{app_id: id}, {scada_id: id}]}, {models: 1}); // 查找app_id: id 或scada_id: id 的数据
         let usedModels = []
         datas.forEach(data => {
             data.models.forEach(model => {
@@ -122,12 +122,12 @@ class TemplateService extends Service {
             })
         })
         usedModels = usedModels.map(function(model) {
-            return model.replace(/\-\d{1,}/, '');
+            return model.replace(/\-\d{1,}$/, '');
         })
-        const result = [... new Set(usedModels)];
+        const result = [...new Set(usedModels)];
         return app.standardRes(
             200, 
-            'success: copy_template',
+            'success: get_template',
             result
         );
     }
