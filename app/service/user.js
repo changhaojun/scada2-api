@@ -6,13 +6,13 @@ class UserService extends Service {
     async login(body) {
         const {User} = this.ctx.model;
         const {username, password} = body;
-        let result = await User.findOne({username, password}, {password: 0});
-        if(result === null) {
+        let data = await User.findOne({username, password}, {password: 0});
+        if(data === null) {
             return this.app.standardRes(201, 'username or password error');
         }
-        result = JSON.parse(JSON.stringify(result));
-        Object.assign(result, {app_id: result._id});
-        delete result['_id']
+        data = JSON.parse(JSON.stringify(data));
+        const {_id: app_id, nickname} = data;
+        const result = {app_id, username, nickname}
         return this.app.standardRes(
             200, 
             'success: login', 

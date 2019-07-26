@@ -97,7 +97,7 @@ class TemplateService extends Service {
         const res = await Template.findOne(body, {_id: 0});
         const data = Object.assign(res, {
             scada_id: mongoose.Types.ObjectId(),
-            scada_name: '',
+            scada_name: res.scada_name + '*',
             create_time: moment(),
             update_time: moment()
         })
